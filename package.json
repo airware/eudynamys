@@ -1,0 +1,45 @@
+{
+  "name": "eudynamys",
+  "version": "1.0.1",
+  "description": "A simple query builder for DynamoDB",
+  "main": "src/QueryBuilder.js",
+  "scripts": {
+    "lint": "./node_modules/eslint/bin/eslint.js . --max-warnings 0",
+    "test": "./node_modules/jest/bin/jest.js"
+  },
+  "engines": {
+    "node": ">=6"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/airware/eudynamys.git"
+  },
+  "keywords": [
+    "dynamodb",
+    "nosql",
+    "query",
+    "builder"
+  ],
+  "author": "Hervé Nivon <hnivon@airware.com>",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/airware/eudynamys/issues"
+  },
+  "homepage": "https://github.com/airware/eudynamys#readme",
+  "devDependencies": {
+    "aws-sdk": "^2.177.0",
+    "chai": "^4.1.2",
+    "codecov": "^3.0.0",
+    "dynamodb-localhost": "0.0.5",
+    "eslint": "^4.14.0",
+    "eslint-config-airbnb-base": "^12.1.0",
+    "eslint-plugin-import": "^2.8.0",
+    "eslint-plugin-jest": "^21.5.0",
+    "jest": "^22.0.4",
+    "jest-junit": "^3.4.1"
+  },
+  "dependencies": {
+    "joi": "^13.1.0",
+    "lodash": "^4.17.4"
+  }
+}
