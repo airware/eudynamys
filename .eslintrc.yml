@@ -1,0 +1,9 @@
+extends: airbnb-base
+plugins:
+  - jest
+rules:
+  no-plusplus: 0
+  no-underscore-dangle: 0
+  prefer-destructuring: 0
+env:
+  jest/globals: true

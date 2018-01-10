@@ -1,0 +1,41 @@
+{
+  "TableName": "sample",
+  "AttributeDefinitions": [{
+    "AttributeName": "uuid",
+    "AttributeType": "S"
+  }, {
+    "AttributeName": "hashKey",
+    "AttributeType": "S"
+  }, {
+    "AttributeName": "rangeKey",
+    "AttributeType": "S"
+  }],
+  "KeySchema": [{
+    "AttributeName": "hashKey",
+    "KeyType": "HASH"
+  }, {
+    "AttributeName": "uuid",
+    "KeyType": "RANGE"
+  }],
+  "ProvisionedThroughput": {
+    "ReadCapacityUnits": 1,
+    "WriteCapacityUnits": 1
+  },
+  "GlobalSecondaryIndexes": [{
+    "IndexName": "sample-index",
+    "Projection": {
+      "ProjectionType": "ALL"
+    },
+    "KeySchema": [{
+      "KeyType": "HASH",
+      "AttributeName": "rangeKey"
+    }, {
+      "KeyType": "RANGE",
+      "AttributeName": "uuid"
+    }],
+    "ProvisionedThroughput": {
+      "ReadCapacityUnits": 1,
+      "WriteCapacityUnits": 1
+    }
+  }]
+}
