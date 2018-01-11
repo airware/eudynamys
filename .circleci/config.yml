@@ -97,11 +97,6 @@ jobs:
           environment:
             JEST_JUNIT_OUTPUT: "reports/junit/js-test-results.xml"
       - run:
-          name: "Test suite execution"
-          command: npm run test -- --ci --testResultsProcessor="jest-junit" --collectCoverage --coverageReporters="lcov"
-          environment:
-            JEST_JUNIT_OUTPUT: "reports/junit/js-test-results.xml"
-      - run:
           name: "Report to codecov.io"
           command: ./node_modules/codecov/bin/codecov
 
