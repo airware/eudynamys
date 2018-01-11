@@ -172,7 +172,7 @@ describe('QueryBuilder', () => {
           title: 'Consequat ad esse et anim.',
           createdAt: 1466697012,
           uuid: 'df11362f-8f84-4f08-845f-9c4fff184d68',
-        }]
+        }],
       });
     });
   });
