@@ -24,7 +24,7 @@ references:
   restore_dynamodb_local: &restore_dynamodb_local
     restore_cache:
       keys:
-        - dynamodblocal-v1
+        - dynamodblocal-v2
 
 jobs:
   checkout_code:
@@ -51,7 +51,7 @@ jobs:
             tar -xzf dynamodb-local.tgz
             cd ..
       - save_cache:
-          key: dynamodblocal-v1
+          key: dynamodblocal-v2
           paths:
             - ./dynamodb_local
 
