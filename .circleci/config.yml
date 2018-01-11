@@ -91,8 +91,6 @@ jobs:
           command: |
             sudo apt-get install default-jre --assume-yes
             java -Djava.library.path=./dynamodb_local/DynamoDBLocal_lib -jar ./dynamodb_local/DynamoDBLocal.jar -port 2018 -inMemory &
-            export AWS_ACCESS_KEY_ID=XCXCXCXCXCXCXCXCXCX
-            export AWS_SECRET_ACCESS_KEY=XCXCXCXCXCXCXCXCXCXCXCXCXCXCXCXCXCX
             ./node_modules/jest/bin/jest.js --ci --testResultsProcessor="jest-junit" --collectCoverage --coverageReporters="lcov"
           environment:
             JEST_JUNIT_OUTPUT: "reports/junit/js-test-results.xml"
