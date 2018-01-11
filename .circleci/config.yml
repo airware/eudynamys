@@ -85,11 +85,11 @@ jobs:
       - run:
           name: "Start dynamodb local"
           # command: java -Djava.library.path=./DynamoDBLocal_lib -jar DynamoDBLocal.jar -sharedDb
-          command: java -Djava.library.path=./DynamoDBLocal_lib -jar DynamoDBLocal.jar -port 201
+          command: java -Djava.library.path=./DynamoDBLocal_lib -jar DynamoDBLocal.jar -port 2018 -sharedDb
           background: true
       - run:
           name: "Test suite execution"
-          command: npm run test -- --ci --testResultsProcessor="jest-junit" --collectCoverage --coverageReporters="lcov"
+          command: ./node_modules/jest/bin/jest.js --ci --testResultsProcessor="jest-junit" --collectCoverage --coverageReporters="lcov"
           environment:
             JEST_JUNIT_OUTPUT: "reports/junit/js-test-results.xml"
       - run:
