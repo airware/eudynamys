@@ -1,6 +1,9 @@
 # eudynamys
 
 [![license](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://github.com/airware/asl-validator/blob/master/LICENSE)
+[![npm version](https://badge.fury.io/js/eudynamys.svg)](https://badge.fury.io/js/eudynamys)
+[![CircleCI](https://circleci.com/gh/airware/eudynamys/tree/master.svg?style=shield&circle-token=f04773ae978c7ebae19f25424bf0570d5aa9b287)](https://circleci.com/gh/airware/eudynamys/tree/master)
+[![codecov](https://codecov.io/gh/airware/eudynamys/branch/master/graph/badge.svg)](https://codecov.io/gh/airware/eudynamys)
 [![Dependency Status](https://www.versioneye.com/user/projects/5a571d1d0fb24f1a9b8bb5f4/badge.svg?style=flat)](https://www.versioneye.com/user/projects/5a571d1d0fb24f1a9b8bb5f4)
 
 Yet another simple query builder for DynamoDB. Give it a try!

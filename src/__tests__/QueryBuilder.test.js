@@ -17,13 +17,14 @@ describe('QueryBuilder', () => {
   beforeAll(async () => {
     jest.setTimeout(10000);
     try {
-      // Installing, immediate if already installed
-      await new Promise(dynamodbLocal.install);
-      dynamodbLocal.install();
-      // Start dynamodb local server
-      dynamodbLocal.start({
-        port: DYNAMODB_PORT,
-      });
+      if (process.env.DDBLOCAL === 'true') {
+        // Installing, immediate if already installed
+        await new Promise(dynamodbLocal.install);
+        // Start dynamodb local server
+        dynamodbLocal.start({
+          port: DYNAMODB_PORT,
+        });
+      }
       // Setup AWS SDK
       AWS.config.dynamodb = {
         endpoint: `http://localhost:${DYNAMODB_PORT}`,
@@ -65,8 +66,10 @@ describe('QueryBuilder', () => {
   });
 
   afterAll(() => {
-    // Stop dynamodb local server, will delete table as well
-    dynamodbLocal.stop(DYNAMODB_PORT);
+    if (process.env.DDBLOCAL === 'true') {
+      // Stop dynamodb local server, will delete table as well
+      dynamodbLocal.stop(DYNAMODB_PORT);
+    }
   });
 
   describe('get', () => {
@@ -172,7 +175,7 @@ describe('QueryBuilder', () => {
           title: 'Consequat ad esse et anim.',
           createdAt: 1466697012,
           uuid: 'df11362f-8f84-4f08-845f-9c4fff184d68',
-        }]
+        }],
       });
     });
   });
