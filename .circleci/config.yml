@@ -4,7 +4,6 @@ references:
   container_config: &container_config
     docker:
       - image: circleci/node:8
-      - image: circleci/java:8
 
     working_directory: ~/repo
 
@@ -46,12 +45,15 @@ jobs:
       - run:
           name: "Downlad and install"
           command: |
+            mkdir dynamodb_local
+            cd dynamodb_local
             curl -k -L -o dynamodb-local.tgz http://dynamodb-local.s3-website-us-west-2.amazonaws.com/dynamodb_local_latest.tar.gz
             tar -xzf dynamodb-local.tgz
+            cd ..
       - save_cache:
           key: dynamodblocal-v1
           paths:
-            - ./DynamoDBLocal_lib
+            - ./dynamodb_local
 
 
   npm_install:
@@ -84,8 +86,9 @@ jobs:
       - *restore_dynamodb_local
       - run:
           name: "Start dynamodb local"
-          # command: java -Djava.library.path=./DynamoDBLocal_lib -jar DynamoDBLocal.jar -sharedDb
-          command: java -Djava.library.path=./DynamoDBLocal_lib -jar DynamoDBLocal.jar -port 2018 -inMemory
+          command: |
+            sudo apt-get install default-jre --assume-yes
+            java -Djava.library.path=./dynamodb_local/DynamoDBLocal_lib -jar DynamoDBLocal.jar -port 2018 -inMemory
           background: true
       - run:
           name: "Test suite execution"
