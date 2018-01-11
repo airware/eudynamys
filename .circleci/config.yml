@@ -45,7 +45,7 @@ jobs:
       - run:
           name: "Downlad and install"
           command: |
-            mkdir dynamodb_local
+            mkdir -p dynamodb_local
             cd dynamodb_local
             curl -k -L -o dynamodb-local.tgz http://dynamodb-local.s3-website-us-west-2.amazonaws.com/dynamodb_local_latest.tar.gz
             tar -xzf dynamodb-local.tgz
