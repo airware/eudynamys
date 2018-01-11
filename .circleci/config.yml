@@ -48,8 +48,6 @@ jobs:
           command: |
             curl -k -L -o dynamodb-local.tgz http://dynamodb-local.s3-website-us-west-2.amazonaws.com/dynamodb_local_latest.tar.gz
             tar -xzf dynamodb-local.tgz
-      - run:
-          name:
       - save_cache:
           key: dynamodblocal-v1
           paths:
