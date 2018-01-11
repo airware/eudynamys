@@ -88,7 +88,7 @@ jobs:
           name: "Start dynamodb local"
           command: |
             sudo apt-get install default-jre --assume-yes
-            java -Djava.library.path=./dynamodb_local/DynamoDBLocal_lib -jar ./dynamodb_local/DynamoDBLocal.jar -port 2018 -inMemory
+            java -Djava.library.path=./dynamodb_local/DynamoDBLocal_lib -jar ./dynamodb_local/DynamoDBLocal.jar -port 2018 -inMemory &
       - run:
           name: "Test suite execution"
           # Because "CredentialsError: Missing credentials in config"
