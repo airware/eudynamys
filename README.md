@@ -1,6 +1,9 @@
 # eudynamys
 
-A simple query builder for DynamoDB.
+[![license](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://github.com/airware/asl-validator/blob/master/LICENSE)
+[![Dependency Status](https://www.versioneye.com/user/projects/5a571d1d0fb24f1a9b8bb5f4/badge.svg?style=flat)](https://www.versioneye.com/user/projects/5a571d1d0fb24f1a9b8bb5f4)
+
+Yet another simple query builder for DynamoDB. Give it a try!
 
 # Install
 ```bash
