@@ -1,10 +1,18 @@
 version: 2
 
 references:
-  container_config: &container_config
+  base_container_config: &base_container_config
     docker:
       - image: circleci/node:8
+    working_directory: ~/repo
 
+  test_container_config: &test_container_config
+    docker:
+      - image: circleci/node:8
+      - image: localstack/localstack:latest
+    environment:
+      - DEBUG: 0
+      - SERVICES: dynamodb
     working_directory: ~/repo
 
   restore_repo: &restore_repo
@@ -21,14 +29,9 @@ references:
         # fallback to using the latest cache if no exact match is found
         - node_modules-v1-cache
 
-  restore_dynamodb_local: &restore_dynamodb_local
-    restore_cache:
-      keys:
-        - dynamodblocal-v2
-
 jobs:
   checkout_code:
-    <<: *container_config
+    <<: *base_container_config
     steps:
       - *restore_repo
       - checkout
@@ -37,27 +40,8 @@ jobs:
           paths:
             - .
 
-  dynamodb_local_setup:
-    <<: *container_config
-    steps:
-      - *restore_repo
-      - *restore_dynamodb_local
-      - run:
-          name: "Downlad and install"
-          command: |
-            mkdir -p dynamodb_local
-            cd dynamodb_local
-            curl -k -L -o dynamodb-local.tgz http://dynamodb-local.s3-website-us-west-2.amazonaws.com/dynamodb_local_latest.tar.gz
-            tar -xzf dynamodb-local.tgz
-            cd ..
-      - save_cache:
-          key: dynamodblocal-v2
-          paths:
-            - ./dynamodb_local
-
-
   npm_install:
-    <<: *container_config
+    <<: *base_container_config
     steps:
       - *restore_repo
       - *restore_npm_install
@@ -70,7 +54,7 @@ jobs:
             - ./node_modules
 
   lint:
-    <<: *container_config
+    <<: *base_container_config
     steps:
       - *restore_repo
       - *restore_npm_install
@@ -79,18 +63,16 @@ jobs:
           command: npm run lint -- --format junit -o reports/junit/js-lint-results.xml
 
   test:
-    <<: *container_config
+    <<: *test_container_config
     steps:
       - *restore_repo
       - *restore_npm_install
-      - *restore_dynamodb_local
       - run:
           name: "Test suite execution"
           # Because "CredentialsError: Missing credentials in config"
-          # AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY are mandatory to access dynamodblocal
+          # AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY and AWS_DEFAULT_REGION are mandatory to access dynamodblocal
+          # Set them in circleci project's configuration in "Build settings > Environment Variables"
           command: |
-            sudo apt-get install default-jre --assume-yes
-            java -Djava.library.path=./dynamodb_local/DynamoDBLocal_lib -jar ./dynamodb_local/DynamoDBLocal.jar -port 2018 -inMemory &
             ./node_modules/jest/bin/jest.js --ci --testResultsProcessor="jest-junit" --collectCoverage --coverageReporters="lcov"
           environment:
             JEST_JUNIT_OUTPUT: "reports/junit/js-test-results.xml"
@@ -112,9 +94,6 @@ workflows:
   main:
     jobs:
       - checkout_code
-      - dynamodb_local_setup:
-          requires:
-            - checkout_code
       - npm_install:
           requires:
             - checkout_code
@@ -124,4 +103,3 @@ workflows:
       - test:
           requires:
             - npm_install
-            - dynamodb_local_setup
