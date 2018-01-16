@@ -5,7 +5,7 @@ const dynamodbLocal = require('dynamodb-localhost');
 const tableDefinition = require('./data/table-definition');
 const tableSeed = require('./data/table-seed');
 
-const DYNAMODB_PORT = 2018;
+const DYNAMODB_PORT = 4569;
 const BATCH_MAX = 25;
 
 const QueryBuilder = require('../QueryBuilder');

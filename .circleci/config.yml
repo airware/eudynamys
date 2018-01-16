@@ -12,7 +12,7 @@ references:
       - image: localstack/localstack:latest
     environment:
       - DEBUG: 0
-      - SERVICES: dynamodb:2018
+      - SERVICES: dynamodb
     working_directory: ~/repo
 
   restore_repo: &restore_repo
@@ -70,7 +70,8 @@ jobs:
       - run:
           name: "Test suite execution"
           # Because "CredentialsError: Missing credentials in config"
-          # AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY are mandatory to access dynamodblocal, set them in circleci
+          # AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY and AWS_DEFAULT_REGION are mandatory to access dynamodblocal
+          # Set them in circleci project's configuration in "Build settings > Environment Variables"
           command: |
             ./node_modules/jest/bin/jest.js --ci --testResultsProcessor="jest-junit" --collectCoverage --coverageReporters="lcov"
           environment:
