@@ -6,6 +6,8 @@
 [![codecov](https://codecov.io/gh/airware/eudynamys/branch/master/graph/badge.svg)](https://codecov.io/gh/airware/eudynamys)
 [![Dependency Status](https://www.versioneye.com/user/projects/5a571d1d0fb24f1a9b8bb5f4/badge.svg?style=flat)](https://www.versioneye.com/user/projects/5a571d1d0fb24f1a9b8bb5f4)
 
+[![NPM](https://nodei.co/npm/eudynamys.png?stars=true)](https://www.npmjs.com/package/eudynamys)
+
 Yet another simple query builder for DynamoDB. Give it a try!
 
 # Install
