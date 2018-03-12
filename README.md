@@ -4,7 +4,7 @@
 [![npm version](https://badge.fury.io/js/eudynamys.svg)](https://badge.fury.io/js/eudynamys)
 [![CircleCI](https://circleci.com/gh/airware/eudynamys/tree/master.svg?style=shield&circle-token=f04773ae978c7ebae19f25424bf0570d5aa9b287)](https://circleci.com/gh/airware/eudynamys/tree/master)
 [![codecov](https://codecov.io/gh/airware/eudynamys/branch/master/graph/badge.svg)](https://codecov.io/gh/airware/eudynamys)
-[![Dependency Status](https://www.versioneye.com/user/projects/5a571d1d0fb24f1a9b8bb5f4/badge.svg?style=flat)](https://www.versioneye.com/user/projects/5a571d1d0fb24f1a9b8bb5f4)
+[![NSP Status](https://nodesecurity.io/orgs/airware/projects/49c7c597-87c8-4f17-915c-f582a5793ad8/badge)](https://nodesecurity.io/orgs/airware/projects/49c7c597-87c8-4f17-915c-f582a5793ad8)
 
 [![NPM](https://nodei.co/npm/eudynamys.png?stars=true)](https://www.npmjs.com/package/eudynamys)
 
