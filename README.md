@@ -38,6 +38,7 @@ const qb = new QueryBuilder(dbDocClient, console.log);
 - `item(object = {})`                   Define an item to put
 - `select(attributeName = '')`          Attributes to fetch
 - `exclusiveStartKey(key)`              In order to loop
+- `scanIndexForward(value)`             To define the order for traversal index
 - `limit(number)`                       Maximum number of items
 - `count()`                             Count
 - `where(keyAttributeName = '')`        Where
