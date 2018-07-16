@@ -188,6 +188,19 @@ class QueryBuilder {
     return this;
   }
 
+  /**
+   * scanIndexForward set the order for index traversal
+   * @param  {Boolean} value    If false, the traversal is performed in descending order
+   *
+   * @return {QueryBuilder}
+   */
+  scanIndexForward(value) {
+    if (typeof value === 'boolean') {
+      this._params.ScanIndexForward = value;
+    }
+    return this;
+  }
+
   limit(number) {
     if (_.isInteger(number)) {
       this._params.Limit = number;
