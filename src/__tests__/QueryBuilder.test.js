@@ -178,6 +178,22 @@ describe('QueryBuilder', () => {
         }],
       });
     });
+
+    it('should accept `scanIndexForward` statement and return data in reverse order with ScanIndexForward to false', async () => {
+      const qb = new QueryBuilder(dbDocClient, debug);
+      const data = await qb.scanIndexForward(false)
+        .table('sample')
+        .index('sample-index')
+        .where('rangeKey').eq('7ffdfc34-17c9-46f4-a65b-d9ee0cf0ddaf')
+        .query();
+
+      expect(data).not.toBeUndefined();
+      expect(data.Items).not.toBeUndefined();
+      expect(data.Count).toEqual(3);
+      expect(data.Items[0].uuid).toEqual('dd6bd5b4-352a-4df1-89b3-08236371032e');
+      expect(data.Items[1].uuid).toEqual('d9676a28-f8a4-4f23-8f58-eabf5b669d83');
+      expect(data.Items[2].uuid).toEqual('70594bf3-737f-4146-afc4-1f16b98d61cc');
+    });
   });
 
   describe('scan', () => {
