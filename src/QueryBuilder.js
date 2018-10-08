@@ -78,7 +78,7 @@ class QueryBuilder {
     if (!utils.isString(keyName)) {
       throw new Error('InvalidKey Exception');
     }
-    this._keys.puhs(keyName);
+    this._keys.push(keyName);
     return this;
   }
 
